@@ -1,0 +1,29 @@
+include /_mixins
+doctype html
+html
+	head
+		title Sushi Restaurant Website
+		link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous")
+		//- link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel="stylesheet" href="stylesheets/main.css")
+		+javascript_include_tag('vendor/all')
+	body
+		header
+			a.logo(href="/")
+				img(src="images/logo.png" alt="logo")
+			div.cart
+				a(href="/")
+					span.left Shopping Cart
+					span.right
+						span.count 0
+						| 
+						| items
+		block content
+
+		+javascript_include_tag("application")
+		+javascript_include_tag("models/cart_item")
+		+javascript_include_tag("collections/cart")
+		+javascript_include_tag("views/cart")
+
+
+
