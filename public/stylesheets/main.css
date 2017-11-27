@@ -95,6 +95,7 @@ main ul li {
   font-size: 14px;
 }
 #cart {
+  display: none;
   height: 120px;
   overflow: hidden;
   background: #000;
@@ -238,6 +239,9 @@ main ul li {
   color: #fff;
   background: #d60041;
   transition: color 0.75s, background 0.75s;
+}
+#content {
+  display: none;
 }
 #item_details {
   position: relative;

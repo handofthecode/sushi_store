@@ -1,4 +1,5 @@
 include /_mixins
+
 doctype html
 html
 	head
@@ -7,23 +8,21 @@ html
 		//- link(rel='stylesheet', href='/stylesheets/style.css')
 		link(rel="stylesheet" href="stylesheets/main.css")
 		+javascript_include_tag('vendor/all')
+		+javascript_include_tag('handlebars_templates')
 	body
 		header
 			a.logo(href="/")
 				img(src="images/logo.png" alt="logo")
 			div.cart
-				a(href="/")
-					span.left Shopping Cart
-					span.right
-						span.count 0
-						| 
-						| items
-		block content
+		main
+			div#cart
+			div#content
+				block content
 
 		+javascript_include_tag("application")
-		+javascript_include_tag("models/cart_item")
-		+javascript_include_tag("collections/cart")
-		+javascript_include_tag("views/cart")
-
-
-
+		+javascript_include_tag("models/cart_item", "models/menu_item")
+		+javascript_include_tag("collections/cart", "collections/menu")
+		+javascript_include_tag("views/cart", "views/menu")
+		+javascript_include_tag("menu_items")
+		script(type="text/javascript").
+			App.init();
