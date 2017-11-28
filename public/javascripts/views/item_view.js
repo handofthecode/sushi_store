@@ -4,7 +4,11 @@ var ItemView = Backbone.View.extend({
   events: {
 
   },
+  remove: function() {
+    $('#item_details').remove();
+  },
   render: function(item) {
+    console.log(item);
     this.$el.html(this.template(item))
   },
 });

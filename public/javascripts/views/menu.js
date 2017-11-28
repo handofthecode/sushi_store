@@ -5,9 +5,6 @@ var MenuView = Backbone.View.extend({
     'click .add_cart' : 'addToCart',
     'click header' : 'itemView'
   },
-  itemView: function() {
-    this.trigger('itemview', id)
-  },
   hide: function() {
     this.$el.find('#items').hide();
   },
