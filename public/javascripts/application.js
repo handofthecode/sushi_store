@@ -8,10 +8,13 @@ var App = {
     this.menu = new MenuView();
   },
   showMenu: function() {
+    console.log('showing menu')
     this.menu.show();
     this.itemView.remove();
+    router.navigate('/');
   },
   renderItemView: function(id) {
+    console.log('showing itemView')
     this.menu.hide();
     this.itemView.render(this.menu.collection.get(id).toJSON());
     router.navigate('item/' + id);
@@ -37,18 +40,22 @@ var App = {
 
 var router = new (Backbone.Router.extend({
   routes: {
-    "item/:number" : "renderItemView",
+    "item/:id" : "renderItemView",
     "/" : "showMenu"
   },
   renderItemView: function(id) {
     var item = App.menu.collection.get(id);
-    App.itemView.render(id);
-  }
+    App.itemView.render(item);
+  },
+  showMenu: function() {
+    App.showMenu();
+  },
 }))();
 
 Backbone.history.start({pushState: true});
 
 Handlebars.registerHelper('imagePath', function(name) {
+  console.log(name)
   return "../images/" + name.toLowerCase().replace(/ /g, '-') + '.jpg';
 });
 
