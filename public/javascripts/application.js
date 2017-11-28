@@ -8,16 +8,13 @@ var App = {
     this.menu = new MenuView();
   },
   showMenu: function() {
-    console.log('showing menu')
     this.menu.show();
-    this.itemView.remove();
-    router.navigate('/');
+    this.itemView.removeItem();
   },
   renderItemView: function(id) {
-    console.log('showing itemView')
     this.menu.hide();
+    this.itemView.removeItem();
     this.itemView.render(this.menu.collection.get(id).toJSON());
-    router.navigate(id);
   },
   createViews: function() {
     this.renderMenu();
@@ -27,7 +24,8 @@ var App = {
   registerEvents: function() {
     this.events = _.extend({}, Backbone.Events);
     this.events.listenTo(this.menu, 'addToCart', this.addToCart.bind(this));
-    this.events.listenTo(this.menu, 'itemView', this.renderItemView.bind(this));
+    this.events.listenTo(this.itemView, 'addToCart', this.addToCart.bind(this));
+
   },
   addToCart: function(id) {
     this.cart.add(this.menu.collection.get(id));
@@ -35,13 +33,14 @@ var App = {
   init: function() {
     this.createViews();
     this.registerEvents();
+    this.router = new Router();
   }
 }
 
-var router = new (Backbone.Router.extend({
+var Router = Backbone.Router.extend({
   routes: {
-    ":id" : "renderItemView",
-    "/" : "showMenu"
+    "menu" : 'showMenu',
+    ":id" : "renderItemView"
   },
   renderItemView: function(id) {
     var item = App.menu.collection.get(id);
@@ -50,10 +49,13 @@ var router = new (Backbone.Router.extend({
   showMenu: function() {
     App.showMenu();
   },
-}))();
+  initialize: function () {
+    this.route(/^\/?$/, 'index', this.showMenu);
+  },
+});
 
 Backbone.history.start({
-  pushState: true,
+  pushState: true
 });
 
 Handlebars.registerHelper('imagePath', function(name) {

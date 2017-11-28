@@ -16,7 +16,7 @@ var MenuView = Backbone.View.extend({
   },
   itemView: function(e) {
     e.preventDefault()
-    this.trigger('itemView', this.getID(e));
+    App.router.navigate(this.getID(e), {trigger: true});
   },
   addToCart: function(e) {
     e.preventDefault();
