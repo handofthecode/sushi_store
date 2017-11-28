@@ -4,28 +4,33 @@ var App = {
   renderCartView: function() {
     $('#cart').slideDown();
   },
-  renderMenu: function() {
-    this.menu = new MenuView();
+  show: function(view) {
+    view === 'menu' ? this.menu.show() : this.menu.hide();
+    view === 'itemView' ? this.itemView.show() : this.itemView.hide();
+    view === 'checkout' ? this.checkout.show() : this.checkout.hide();
   },
   showMenu: function() {
-    this.menu.show();
-    this.itemView.removeItem();
+    this.show('menu');
   },
   renderItemView: function(id) {
-    this.menu.hide();
-    this.itemView.removeItem();
+    this.show('itemView');
     this.itemView.render(this.menu.collection.get(id).toJSON());
   },
+  renderCheckout: function() {
+    this.checkout.collection = this.cart.collection;
+    this.checkout.render();
+    this.show('checkout');
+  },
   createViews: function() {
-    this.renderMenu();
+    this.menu = new MenuView();
     this.cart = new CartView();
     this.itemView = new ItemView();
+    this.checkout = new Checkout();
   },
   registerEvents: function() {
     this.events = _.extend({}, Backbone.Events);
     this.events.listenTo(this.menu, 'addToCart', this.addToCart.bind(this));
     this.events.listenTo(this.itemView, 'addToCart', this.addToCart.bind(this));
-
   },
   addToCart: function(id) {
     this.cart.add(this.menu.collection.get(id));
@@ -40,7 +45,11 @@ var App = {
 var Router = Backbone.Router.extend({
   routes: {
     "menu" : 'showMenu',
+    "checkout" : "renderCheckout",
     ":id" : "renderItemView"
+  },
+  renderCheckout: function() {
+    App.renderCheckout();
   },
   renderItemView: function(id) {
     var item = App.menu.collection.get(id);

@@ -1,15 +1,15 @@
 var MenuView = Backbone.View.extend({
   template: App.templates.menu,
-  el: '#content',
+  el: '#items',
   events: {
     'click .add_cart' : 'addToCart',
     'click header' : 'itemView'
   },
   hide: function() {
-    this.$el.find('#items').hide();
+    this.$el.hide();
   },
   show: function() {
-    this.$el.find('#items').show();
+    this.$el.show();
   },
   getID: function(e) {
     return $(e.target).closest('li').attr('data-id');

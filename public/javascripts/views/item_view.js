@@ -1,18 +1,17 @@
 var ItemView = Backbone.View.extend({
   template: App.templates.item_view,
-  el: '#content',
+  el: '#item_details',
   events: {
     'click .prev' : 'previousItem',
     'click .next' : 'nextItem',
     'click .add_cart' : 'addToCart'
   },
   addToCart: function(e) {
-    console.log('test')
     e.preventDefault();
-    this.trigger('addToCart', String(this.getID(e)));
+    this.trigger('addToCart', String(this.getID()));
   },
   getID: function() {
-    return +window.location.href.match(/\/(\d+)$/).pop();
+    return +window.location.href.match(/\/([0-9]+)#?$/).pop();
   },
   previousItem: function(e) {
     var id = this.getID() - 1;
@@ -24,10 +23,13 @@ var ItemView = Backbone.View.extend({
     if (id > MENU_ITEMS.length) id = 1;
     App.router.navigate(String(id), {trigger: true});
   },
-  removeItem: function() {
-    $('#item_details').remove();
+  hide: function() {
+    this.$el.hide();
+  },
+  show: function() {
+    this.$el.show();
   },
   render: function(item) {
-    this.$el.append(this.template(item))
+    this.$el.html(this.template(item));
   },
 });
