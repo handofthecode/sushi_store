@@ -4,7 +4,12 @@ var ItemView = Backbone.View.extend({
   events: {
     'click .prev' : 'previousItem',
     'click .next' : 'nextItem',
-    'click .add_cart' : 'addToCart'
+    'click .add_cart' : 'addToCart',
+    'click .close' : 'menuView'
+  },
+  menuView: function(e) {
+    e.preventDefault();
+    App.router.navigate('', {trigger: true});
   },
   addToCart: function(e) {
     e.preventDefault();

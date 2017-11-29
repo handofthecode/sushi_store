@@ -38,6 +38,16 @@ var Cart = Backbone.Collection.extend({
     }
     this.update();
   },
+  subtractItem: function(item) {
+    var existing = this.get(item.get('id'));
+
+    if (existing.get('quantity') === 1) {
+      this.destroy(item);
+    } else {
+      existing.set('quantity', existing.get('quantity') - 1);
+      this.update();
+    }
+  },
   destroy: function(id) {
     this.remove(id);
     this.update();
@@ -48,6 +58,7 @@ var Cart = Backbone.Collection.extend({
   },
   update: function() {
     this.setTotal().setQuantity().updateStorage();
+    this.trigger('update');
   },
   initialize: function() {
     this.readStorage();

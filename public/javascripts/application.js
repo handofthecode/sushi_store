@@ -7,10 +7,17 @@ var App = {
   show: function(view) {
     view === 'menu' ? this.menu.show() : this.menu.hide();
     view === 'itemView' ? this.itemView.show() : this.itemView.hide();
-    view === 'checkout' ? this.checkout.show() : this.checkout.hide();
+    if (view === 'checkout') {
+      this.checkout.show();
+      this.cart.hide();
+    } else {
+      this.checkout.hide();
+    }
   },
   showMenu: function() {
     this.show('menu');
+    this.cart.render();
+    this.cart.show();
   },
   renderItemView: function(id) {
     this.show('itemView');
@@ -19,6 +26,7 @@ var App = {
   renderCheckout: function() {
     this.checkout.collection = this.cart.collection;
     this.checkout.render();
+    this.cart.hide();
     this.show('checkout');
   },
   createViews: function() {

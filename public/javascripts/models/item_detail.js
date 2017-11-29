@@ -1,1 +1,0 @@
-var ItemDetail = Backbone.Model.extend({});
