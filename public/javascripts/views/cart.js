@@ -17,7 +17,6 @@ var CartView = Backbone.View.extend({
   deleteAll: function(e) {
     e.preventDefault();
     this.collection.destroyAll();
-    // this.render();
     this.hide();
   },
   checkout: function(e) {
@@ -26,7 +25,6 @@ var CartView = Backbone.View.extend({
   },
   add: function(item) {
     this.collection.addItem(item);
-    // this.render(item);
     this.show();
   },
   render: function() {
@@ -43,6 +41,6 @@ var CartView = Backbone.View.extend({
     this.header = new Header(this.collection);
     this.listenTo(this.collection, 'update', this.render);
     this.render();
-    if (this.collection.length > 0) this.show();
+    this.show();
   }
 });
