@@ -43,7 +43,6 @@ var App = {
 
 var Router = Backbone.Router.extend({
   routes: {
-    "menu" : 'showMenu',
     "checkout" : "showCheckout",
     ":id" : "showItemView"
   },
