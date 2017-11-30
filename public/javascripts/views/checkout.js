@@ -42,6 +42,9 @@ var Checkout = Backbone.View.extend({
       items: this.collection.toJSON(),
       total: this.collection.getTotal()
     }));
+  },
+  initialize: function(collection) {
+    this.collection = collection;
   }
 });
 

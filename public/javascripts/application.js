@@ -1,30 +1,21 @@
 var App = {
   templates: JST,
   $el: $('body'),
-  renderCartView: function() {
-    $('#cart').slideDown();
-  },
   show: function(view) {
     view === 'menu' ? this.menu.show() : this.menu.hide();
     view === 'itemView' ? this.itemView.show() : this.itemView.hide();
-    if (view === 'checkout') {
-      this.checkout.show();
-      this.cart.hide();
-    } else {
-      this.checkout.hide();
-    }
+    view === 'checkout' ? this.checkout.show() : this.checkout.hide();
   },
   showMenu: function() {
     this.show('menu');
     this.cart.render();
     this.cart.show();
   },
-  renderItemView: function(id) {
+  showItemView: function(id) {
     this.show('itemView');
     this.itemView.render(this.menu.collection.get(id).toJSON());
   },
-  renderCheckout: function() {
-    this.checkout.collection = this.cart.collection;
+  showCheckout: function() {
     this.checkout.render();
     this.cart.hide();
     this.show('checkout');
@@ -33,7 +24,7 @@ var App = {
     this.menu = new MenuView();
     this.cart = new CartView();
     this.itemView = new ItemView();
-    this.checkout = new Checkout();
+    this.checkout = new Checkout(this.cart.collection);
   },
   registerEvents: function() {
     this.events = _.extend({}, Backbone.Events);
@@ -53,15 +44,15 @@ var App = {
 var Router = Backbone.Router.extend({
   routes: {
     "menu" : 'showMenu',
-    "checkout" : "renderCheckout",
-    ":id" : "renderItemView"
+    "checkout" : "showCheckout",
+    ":id" : "showItemView"
   },
-  renderCheckout: function() {
-    App.renderCheckout();
+  showCheckout: function() {
+    App.showCheckout();
   },
-  renderItemView: function(id) {
+  showItemView: function(id) {
     var item = App.menu.collection.get(id);
-    App.renderItemView(item);
+    App.showItemView(item);
   },
   showMenu: function() {
     App.showMenu();
