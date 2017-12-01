@@ -9,6 +9,14 @@ var Cart = Backbone.Collection.extend({
 
     return this;
   },
+  toString: function() {
+    var result = '';
+    this.toJSON().forEach(function(item) {
+      result += item.quantity + ' x ' + item.name + ', ';
+    });
+
+    return result.slice(0, -2);
+  },
   getTotal: function() { return this.total; },
   setQuantity: function() {
     this.quantity = this.toJSON().reduce(function(a, b) {

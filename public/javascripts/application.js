@@ -5,6 +5,7 @@ var App = {
     view === 'menu' ? this.menu.show() : this.menu.hide();
     view === 'itemView' ? this.itemView.show() : this.itemView.hide();
     view === 'checkout' ? this.checkout.show() : this.checkout.hide();
+    view === 'payment' ? this.payment.show() : this.payment.hide();
   },
   showMenu: function() {
     this.show('menu');
@@ -20,11 +21,19 @@ var App = {
     this.cart.hide();
     this.show('checkout');
   },
+  showPayment: function() {
+    this.payment.render({
+      total: this.cart.collection.getTotal(),
+      items: this.cart.collection.toString()
+    });
+    this.show('payment');
+  },
   createViews: function() {
     this.menu = new MenuView();
     this.cart = new CartView();
     this.itemView = new ItemView();
     this.checkout = new Checkout(this.cart.collection);
+    this.payment = new Payment();
   },
   registerEvents: function() {
     this.events = _.extend({}, Backbone.Events);
@@ -44,7 +53,11 @@ var App = {
 var Router = Backbone.Router.extend({
   routes: {
     "checkout" : "showCheckout",
+    "pay" : "showPayment",
     ":id" : "showItemView"
+  },
+  showPayment: function() {
+    App.showPayment();
   },
   showCheckout: function() {
     App.showCheckout();

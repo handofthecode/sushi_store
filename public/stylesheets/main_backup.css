@@ -1,8 +1,17 @@
 @import "whitespace-reset-modified.css";
-main,
+
+body {
+  background: url("../images/background-image.png") repeat;
+  font: normal 14px "Lucianda", Helvetica, Arial, sans-serif;
+}
 body > header,
+main,
 body > footer {
   width: 1000px;
+}
+body > header,
+body > footer {
+  border-bottom: 1px solid #787878;
 }
 a {
   text-decoration: none;
@@ -10,17 +19,6 @@ a {
 a:focus,
 a:active {
   outline: none;
-}
-body {
-  background: url("../images/background-image.png") repeat;
-  font: normal 14px "Lucianda", Helvetica, Arial, sans-serif;
-}
-body > header,
-body > footer {
-  border-bottom: 1px solid #787878;
-}
-body > footer {
-  margin: 50px auto;
 }
 body > header {
   overflow: hidden;
@@ -46,11 +44,6 @@ body > header .cart span.left {
   width: 40%;
   color: #ff3170;
   text-transform: uppercase;
-  width: 50%;
-  padding: 8px 5px;
-  text-align: center;
-  background: #000;
-  color: #b0b0b0;
 }
 body > header .cart span.right {
   width: 60%;
@@ -59,8 +52,6 @@ body > header .cart span.right {
   padding: 7px 15px 7px 10px;
   background: linear-gradient(to bottom, #d60041 0%, #a90040 100%);
   text-transform: uppercase;
-  width: 50%;
-  text-align: center;
 }
 body > header .cart span.right:hover {
   background: linear-gradient(to bottom, #a90040 0%, #d60041 100%);
@@ -77,6 +68,17 @@ body > header .cart span.right:before {
   border-right: 14px solid transparent;
   border-bottom: 14px solid transparent;
   border-left: 14px solid #000;
+}
+body > header .cart span.left {
+  width: 50%;
+  padding: 8px 5px;
+  text-align: center;
+  background: #000;
+  color: #b0b0b0;
+}
+body > header .cart span.right {
+  width: 50%;
+  text-align: center;
 }
 body > header .cart span.count {
   font-size: 12px;
@@ -246,10 +248,6 @@ main ul li {
   margin: 20px 0 0 0;
   background: url("../images/sushi-preview.png");
 }
-#item_details > div article,
-#item_details > div aside {
-  background: #fff;
-}
 #item_details > div {
   position: absolute;
   height: 200px;
@@ -275,6 +273,10 @@ main ul li {
   color: #000;
   background: #d60041;
   transition: color 0.35s, background 0.35s;
+}
+#item_details > div article,
+#item_details > div aside {
+  background: #fff;
 }
 #item_details > div article {
   width: 400px;
@@ -347,141 +349,89 @@ main ul li {
   text-align: right;
   color: #000;
 }
-.checkout > div {
+#checkout > div {
   background: url("../images/sushi-preview.png");
   height: 60px;
 }
-.checkout > div.img_top {
+#checkout > div.img_top {
   background-position: top;
 }
-.checkout > div.img_bottom {
+#checkout > div.img_bottom {
   background-position: bottom;
 }
-.checkout > section {
+#checkout > section {
   padding: 55px 100px;
   background: #fff;
 }
-.checkout > section h1 {
+#checkout > section h1 {
   margin: 0 0 60px 0;
   font-size: 40px;
 }
-.checkout > section table {
+#checkout > section table {
   width: 800px;
   border-collapse: collapse;
   text-align: left;
 }
-.checkout > section table thead {
+#checkout > section table thead {
   text-transform: uppercase;
 }
-.checkout > section table tbody td {
+#checkout > section table tbody td {
   border-top: 1px solid #b0b0b0;
   border-bottom: 1px solid #b0b0b0;
 }
-.checkout > section table tbody td img {
+#checkout > section table tbody td img {
   height: 100px;
 }
-.checkout > section table td:nth-child(2) {
+#checkout > section table td:nth-child(4),
+#checkout > section table th:nth-child(4) {
+  text-align: right;
+}
+#checkout > section table td:nth-child(2) {
   font-size: 20px;
 }
-.checkout > section table td:nth-child(3) {
+#checkout > section table td:nth-child(3) {
   font-weight: bold;
 }
-.checkout > section table td:nth-child(3) .quantity_modifier {
+#checkout > section table td:nth-child(3) .quantity_modifier {
   margin: 0 10px;
   vertical-align: middle;
   border-radius: 100%;
   font-size: 12px;
   cursor: pointer;
 }
-.checkout > section table td:nth-child(3) p {
+#checkout > section table td:nth-child(3) p {
   display: inline-block;
 }
-.checkout > section table td:nth-child(4) {
+#checkout > section table td:nth-child(4) {
   font-size: 20px;
   letter-spacing: 2px;
 }
-.checkout > section table td:nth-child(4),
-.checkout > section table th:nth-child(4) {
-  text-align: right;
-}
-.checkout > section > p {
+#checkout > section > p {
   margin: 15px 0 0 0;
   text-align: right;
   font-size: 10px;
   text-transform: uppercase;
   color: #787878;
 }
-.checkout > section > p .total {
+#checkout > section > p .total {
   margin: 0 0 0 10px;
   font-size: 30px;
   letter-spacing: 2px;
   color: #000;
 }
-.checkout > section footer {
+#checkout > section footer {
   margin: 50px 0 0 0;
   text-align: right;
 }
-.checkout > section footer a {
+#checkout > section footer a {
   color: #ff3170;
   text-transform: uppercase;
 }
-.checkout > section footer form {
+#checkout > section footer form {
   display: inline-block;
   margin: 0 0 0 20px;
 }
-#user_info fieldset {
-  width: 30%;
-  margin: 10px;
-  display: inline-block;
-}
-#user_info input {
-  width: 100%;
-  height: 20px;
-  border-radius: 5px;
-  padding: 3px 5px;
-  font-size: 16px;
-  text-align: center;
-}
-#user_info label {
-  margin: 10px 0 3px 0;
-  display: block;
-}
-#user_info label input {
-  display: inline-block;
-  width: 15px;
-  margin-right: 5px;
-  vertical-align: middle;
-}
-#user_info #credit_card {
-  display: block;
-  width: 60%;
-  margin: 20px auto;
-}
-#user_info #credit_card label {
-  text-align: center;
-  margin: 0 10px;
-  display: inline-block;
-  width: 20%;
-}
-#user_info #credit_card label select {
-  font-size: 14px;
-}
-#user_info #credit_card label:last-child {
-  width: 8%;
-}
-#user_info #credit_card label:first-child {
-  width: 50%;
-}
-#user_info #credit_card input {
-  width: 100%;
-  display: block;
-}
-#payment input.submit,
-#checkout input.submit {
-  display: inline-block;
-  width: 200px;
-  height: 50px;
-  padding: auto auto;
+#checkout > section footer form input {
   border: none;
   color: #fff;
   position: relative;
@@ -491,14 +441,9 @@ main ul li {
   font-size: 14px;
   padding: 15px;
 }
-#payment input.submit:hover,
-#checkout input.submit:hover {
+#checkout > section footer form input:hover {
   background: linear-gradient(to bottom, #a90040 0%, #d60041 100%);
 }
-#payment footer {
-  font-size: 20px;
-}
-#payment .total {
-  vertical-align: middle;
-  margin: 0 15px 0 5px;
+body > footer {
+  margin: 50px auto;
 }

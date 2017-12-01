@@ -26,12 +26,23 @@ module.exports = function(grunt) {
           processName: extractFileName
         }
       }
+    },
+    watch: {
+      scripts: {
+        files: "handlebars/*.hbs",
+        tasks: ['handlebars'],
+        options: {
+          interupt: true,
+          debounceDelay: 500
+        }
+      }
     }
   });
 
   ["grunt-bower-concat",
    "grunt-contrib-uglify",
-   "grunt-contrib-handlebars"
+   "grunt-contrib-handlebars",
+   "grunt-contrib-watch"
   ].forEach(function(task) {
     grunt.loadNpmTasks(task);
   });

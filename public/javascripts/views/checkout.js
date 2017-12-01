@@ -4,8 +4,12 @@ var Checkout = Backbone.View.extend({
   events: {
     'click .fa-minus' : 'subtractOne',
     'click .fa-plus' : 'addOne',
-    'submit form' : 'reset',
+    'submit form' : 'pay',
     'click footer a' : 'reset'
+  },
+  pay: function(e) {
+    e.preventDefault();
+    App.router.navigate('pay', {trigger: true});
   },
   reset: function(e) {
     e.preventDefault();

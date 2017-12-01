@@ -19,12 +19,13 @@ html
 				block content
 				ul#items
 				div#item_details
-				div#checkout
+				div#checkout.checkout
+				div#payment.checkout
 
 		+javascript_include_tag("application")
 		+javascript_include_tag("models/menu_item")
 		+javascript_include_tag("collections/cart", "collections/menu")
-		+javascript_include_tag("views/cart", "views/header", "views/menu", "views/item_view", "views/checkout")
+		+javascript_include_tag("views/cart", "views/header", "views/menu", "views/item_view", "views/checkout", "views/payment")
 		+javascript_include_tag("menu_items")
 		script(type="text/javascript").
 			App.init();
