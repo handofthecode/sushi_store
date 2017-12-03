@@ -28,6 +28,9 @@ var App = {
     });
     this.show('payment');
   },
+  placeOrder: function(order) {
+    $.post('orders', order, this.success.bind(this), 'json');
+  },
   createViews: function() {
     this.menu = new MenuView();
     this.cart = new CartView();
@@ -39,9 +42,14 @@ var App = {
     this.events = _.extend({}, Backbone.Events);
     this.events.listenTo(this.menu, 'addToCart', this.addToCart.bind(this));
     this.events.listenTo(this.itemView, 'addToCart', this.addToCart.bind(this));
+    this.events.listenTo(this.payment, 'placeOrder', this.placeOrder.bind(this));
   },
   addToCart: function(id) {
     this.cart.add(this.menu.collection.get(id));
+  },
+  success: function() {
+    this.cart.collection.destroyAll();
+    this.showMenu();
   },
   init: function() {
     this.createViews();

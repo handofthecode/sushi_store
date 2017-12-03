@@ -13,12 +13,13 @@ router.route('/orders').get(function(req, res) {
   res.json(data);
 }).post(function(req, res) {
   var allOrders = data.orders;
-  req.body.id = ++data.lastID;
+  req.body.id = data.lastID++;
   allOrders.push(req.body);
   fs.writeFileSync(filePath, JSON.stringify({
     orders: allOrders,
     lastID: data.lastID
   }), 'utf8');
-})
+  res.send('200');
+});
 
 module.exports = router;

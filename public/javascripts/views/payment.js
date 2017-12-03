@@ -4,11 +4,12 @@ var Payment = Backbone.View.extend({
   events: {
     'change input[type="checkbox"]' : 'fillAddress',
     'click .total' : 'toCheckout',
-    // 'submit form' : 'placeOrder'
+    'submit form' : 'placeOrder'
   },
-  // placeOrder: function(e) {
-  //   App.router.navigate('', {trigger: true});
-  // },
+  placeOrder: function(e) {
+    e.preventDefault();
+    this.trigger('placeOrder', this.$('form').serialize());
+  },
   toCheckout: function(e) {
     e.preventDefault();
     App.router.navigate('checkout', {trigger: true});
